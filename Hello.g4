@@ -2,7 +2,59 @@ grammar Hello;
 
 r : (IGNORE| IDENTIFIER| NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST | COMENTARIO)+;
 
+// PALABRAS RESERVADAS
 
+PROGRAM: 'PROGRAM'{ System.out.println(getText()); };
+BEGIN: 'BEGIN'{ System.out.println(getText()); };
+END: 'END'{ System.out.println(getText()); };
+CONST: 'CONST'{ System.out.println(getText()); };
+VAR: 'VAR'{ System.out.println(getText()); };
+PROCEDURE: 'PROCEDURE'{ System.out.println(getText()); };
+IF: 'IF'{ System.out.println(getText()); };
+THEN: 'THEN'{ System.out.println(getText()); };
+ELSE: 'ELSE'{ System.out.println(getText()); };
+WHILE: 'WHILE'{ System.out.println(getText()); };
+DO: 'DO'{ System.out.println(getText()); };
+REPEAT: 'REPEAT'{ System.out.println(getText()); };
+UNTIL: 'UNTIL'{ System.out.println(getText()); };
+FOR: 'FOR'{ System.out.println(getText()); };
+TO: 'TO'{ System.out.println(getText()); };
+DOWNTO: 'DOWNTO'{ System.out.println(getText()); };
+OR: 'OR'{ System.out.println(getText()); };
+AND: 'AND'{ System.out.println(getText()); };
+NOT: 'NOT'{ System.out.println(getText()); };
+TRUE: 'TRUE'{ System.out.println(getText()); };
+FALSE: 'FALSE'{ System.out.println(getText()); };
+MENOR_QUE: '<'{ System.out.println(getText()); };
+MAYOR_QUE: '>'{ System.out.println(getText()); };
+MENOR_IGUAL_QUE: '<='{ System.out.println(getText()); };
+MAYOR_IGUAL_QUE: '>='{ System.out.println(getText()); };
+
+// TIPOS DE DATOS
+
+INTEGER: 'integer'{ System.out.println(getText()); };
+REAL: 'real'{ System.out.println(getText()); };
+
+// SIMBOLOS
+
+COMA: ','{ System.out.println(getText()); };
+PUNTO_COMA: ';'{ System.out.println(getText()); };
+PUNTO: '.'{ System.out.println(getText()); };
+IGUAL: '='{ System.out.println(getText()); };
+PARENTESIS_ABIERTO: '('{ System.out.println(getText()); };
+PARENTENTESIS_CERRADO: ')'{ System.out.println(getText()); };
+DOS_PUNTOS: ':'{ System.out.println(getText()); };
+
+// OPERADORES
+
+ASIGNACION: ':='{ System.out.println(getText()); };
+MAS: '+'{ System.out.println(getText()); };
+MENOS: '-'{ System.out.println(getText()); };
+ASTERISCO: '*'{ System.out.println(getText()); };
+DIV: 'DIV'{ System.out.println(getText()); };
+MOD: 'MOD'{ System.out.println(getText()); };
+
+// TOKENS IDENTIFICADORES
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*{
     System.out.println(getText());
