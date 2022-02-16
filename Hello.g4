@@ -2,6 +2,8 @@ grammar Hello;
 
 r : (IGNORE| IDENTIFIER| NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST | COMENTARIO)+;
 
+
+
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*{
     System.out.println(getText());
 };
