@@ -14,9 +14,13 @@ NUMERIC_REAL_CONST: [+-]?( CONST_REAL_PUNTO_FIJO | CONST_REAL_EXPONENCIAL | CONS
     System.out.println(getText());
 };
 
+STRING_CONST: '"'('""'| ~'"')+'"'{
+    System.out.println(getText());
+};
+
 fragment CONST_REAL_PUNTO_FIJO: [0-9]+'.'[0-9]+;
 fragment CONST_REAL_EXPONENCIAL: [0-9]+[eE][+-]?[0-9]+;
 fragment CONST_REAL_MIXTO: CONST_REAL_PUNTO_FIJO[eE][+-]?[0-9]+;
 
 
-IGNORE: [\n\t\r ] -> skip;
+IGNORE: [\n\t\r .] -> skip;
