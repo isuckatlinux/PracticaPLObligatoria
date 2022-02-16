@@ -1,0 +1,41 @@
+# 1
+## 2
+### 3
+#### 4
+##### 5
+###### 6
+
+####### 7
+#error
+
+esto es texto **esto es negrita**, __esto tambien es negrita__
+
+esto es es texto, *esto es cursiva*, _esto es cursiva_
+
+>esto es una cita fallida
+
+> esto es una cita bien hecha
+
+--- esto no es un separador
+
+esto si es un separador:
+---
+
+~~~
+esto es codigo
+~~~
+
+~~~
+System.out.println("hola mundo");
+~~~
+
+[esto es un enlace no valido](nosoyunenlacevalido)
+[esto si que es un enlace valido](http://www.google.es)
+
+text
+
+- primer item
+- segundo item
+
+- solo un item
+
