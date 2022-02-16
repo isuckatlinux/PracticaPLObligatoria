@@ -21,4 +21,8 @@ _identificador
 
 32948jbj
 
-"soy una const""ante"
+'comillad doble " dentro1'
+"comilla simple ' dentro2"
+'comilla simple '' dentro3'
+"comilla doble "" dentro4"
+
