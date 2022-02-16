@@ -1,6 +1,45 @@
 grammar Hello;
 
-r : (IGNORE| IDENTIFIER| NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST | COMENTARIO)+;
+prg : PROGRAM IDENTIFIER PUNTO_COMA blq PUNTO;
+blq : dcllist BEGIN sentlist END;
+dcllist :  | dcllist dcl;
+sentlist : sent | sentlist sent;
+dcl : defcte | defvar | defproc | deffun;
+
+defcte : CONST ctelist;
+ctelist : IDENTIFIER = simpvalue PUNTO_COMA | ctelist IDENTIFIER IGUAL simpvalue PUNTO_COMA;
+simpvalue : NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST | STRING_CONST;
+defvar : VAR defvarlist PUNTO_COMA;
+defvarlist : varlist DOS_PUNTOS tbas | defvarlist PUNTO_COMA varlist DOS_PUNTOS tbas;
+varlist : IDENTIFIER | IDENTIFIER COMA varlist;
+defproc : PROCEDURE IDENTIFIER formal_paramlist PUNTO_COMA blq PUNTO_COMA;
+deffun : FUNCTION IDENTIFIER formal_paramlist DOS_PUNTOS tbas PUNTO_COMA blq PUNTO_COMA;
+formal_paramlist : | PARENTESIS_ABIERTO formal_param PARENTESIS_CERRADO;
+formal_param : varlist DOS_PUNTOS tbas | varlist DOS_PUNTOS tbas PUNTO_COMA formal_param;
+tbas : INTEGER | REAL;
+
+sent : asig PUNTO_COMA| proc_call PUNTO_COMA
+| IF expcond THEN blq ELSE blq
+| WHILE expcond DO blq
+| REPEAT blq UNTIL expcond PUNTO_COMA
+| FOR IDENTIFIER ASIGNACION exp inc exp DO blq;
+
+asig : IDENTIFIER ASIGNACION exp;
+exp : exp op exp | factor;
+op : MAS | MENOS | ASTERISCO | DIV | MOD;
+factor : simpvalue | PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | IDENTIFIER subpparamlist;
+subpparamlist :  | PARENTESIS_ABIERTO explist PARENTESIS_CERRADO;
+explist : exp | exp COMA explist;
+proc_call : IDENTIFIER subpparamlist;
+
+// PARTE OPCIONAL
+
+inc : TO | DOWNTO;
+expcond : expcond oplog expcond | factorcond;
+oplog : OR | AND;
+factorcond : exp opcomp exp | PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | NOT factorcond| TRUE | FALSE;
+opcomp : MENOR_QUE | MAYOR_QUE | MENOR_IGUAL_QUE | MAYOR_IGUAL_QUE | IGUAL;
+
 
 // PALABRAS RESERVADAS
 
@@ -10,6 +49,7 @@ END: 'END'{ System.out.println(getText()); };
 CONST: 'CONST'{ System.out.println(getText()); };
 VAR: 'VAR'{ System.out.println(getText()); };
 PROCEDURE: 'PROCEDURE'{ System.out.println(getText()); };
+FUNCTION: 'FUNCTION'{ System.out.println(getText()); };
 IF: 'IF'{ System.out.println(getText()); };
 THEN: 'THEN'{ System.out.println(getText()); };
 ELSE: 'ELSE'{ System.out.println(getText()); };
@@ -42,7 +82,7 @@ PUNTO_COMA: ';'{ System.out.println(getText()); };
 PUNTO: '.'{ System.out.println(getText()); };
 IGUAL: '='{ System.out.println(getText()); };
 PARENTESIS_ABIERTO: '('{ System.out.println(getText()); };
-PARENTENTESIS_CERRADO: ')'{ System.out.println(getText()); };
+PARENTESIS_CERRADO: ')'{ System.out.println(getText()); };
 DOS_PUNTOS: ':'{ System.out.println(getText()); };
 
 // OPERADORES
