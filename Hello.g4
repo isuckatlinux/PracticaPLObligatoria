@@ -15,7 +15,10 @@ NUMERIC_REAL_CONST: [+-]?( CONST_REAL_PUNTO_FIJO | CONST_REAL_EXPONENCIAL | CONS
 };
 
 STRING_CONST: '"'('""'| ~'"')+'"'{
-    System.out.println(getText());
+    String frase = getText();
+    frase = frase.substring(1, frase.length()-1);
+    frase = frase.replaceAll("\"\"", "\"");
+    System.out.println(frase);
 };
 
 fragment CONST_REAL_PUNTO_FIJO: [0-9]+'.'[0-9]+;
