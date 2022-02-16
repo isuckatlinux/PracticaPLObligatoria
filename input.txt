@@ -26,3 +26,9 @@ _identificador
 'comilla simple '' dentro3'
 "comilla doble "" dentro4"
 
+{ HOLA SOY EL COMENTARIO }
+
+(* hola soy el comentario multilinea en una linea *)
+(* hola soy el comentario multilinea en dos
+ lineas *)
+

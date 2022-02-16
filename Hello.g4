@@ -1,6 +1,6 @@
 grammar Hello;
 
-r : (IGNORE| IDENTIFIER| NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST)+;
+r : (IGNORE| IDENTIFIER| NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST | COMENTARIO)+;
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*{
     System.out.println(getText());
@@ -21,6 +21,14 @@ STRING_CONST: (COMILLAS_DOBLES|COMILLAS_SIMPLES) {
     frase = frase.replaceAll("''", "'");
     System.out.println(frase);
 };
+
+COMENTARIO: (COMENTARIO_UNILINEA | COMENTARIO_MULTILINEA){
+    System.out.println(getText());
+};
+
+fragment COMENTARIO_UNILINEA: '{'~[\r\n]+'}';
+fragment COMENTARIO_MULTILINEA: '(*'(~'*' | '*'~')')+'*)';
+
 fragment COMILLAS_DOBLES:'"'('""'| ~'"')+'"';
 fragment COMILLAS_SIMPLES:'\''('\'\''| ~'\'')+'\'';
 
