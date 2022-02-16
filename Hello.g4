@@ -1,6 +1,6 @@
 grammar Hello;
 
-prg : PROGRAM IDENTIFIER PUNTO_COMA blq PUNTO;
+prg: PROGRAM IDENTIFIER PUNTO_COMA blq PUNTO;
 blq : dcllist BEGIN sentlist END;
 dcllist :  | dcllist dcl;
 sentlist : sent | sentlist sent;
@@ -132,4 +132,4 @@ fragment CONST_REAL_EXPONENCIAL: [0-9]+[eE][+-]?[0-9]+;
 fragment CONST_REAL_MIXTO: CONST_REAL_PUNTO_FIJO[eE][+-]?[0-9]+;
 
 
-IGNORE: [\n\t\r .] -> skip;
+IGNORE: [\n\t\r ] -> skip;
