@@ -11,7 +11,7 @@ public class Main {
             HelloLexer analex = new HelloLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(analex);
             HelloParser anasint = new HelloParser(tokens);
-            anasint.r();
+            anasint.prg();
         } catch (org.antlr.v4.runtime.RecognitionException e) {
             System.err.println("REC " + e.getMessage());
         } catch (IOException e) {

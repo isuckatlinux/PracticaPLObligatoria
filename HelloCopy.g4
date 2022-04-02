@@ -1,29 +1,18 @@
 grammar Hello;
 
 /*hacer gramatica ll1
-X : Xa | b;
+X : X | A
+A : abc
 --------
-X : b X'
-X': a X' | lambda;
-*/
-
-/*
-eliminar dir conjuntos
-
-X : A | B
-
-A: 'terminal'
-B:
+X :
+X':
 
 */
 
 prg: PROGRAM ID PUNTO_COMA blq PUNTO;
 blq : dcllist BEGIN sentlist END;
-dcllist : dclist_prima ;
-dclist_prima: dcl dclist_prima | ;
-//sentlist : sentlist sent | sent;
-sentlist: sent sentlistprima;
-sentlistprima: sent sentlistprima | ;
+dcllist :  | dcllist dcl;
+sentlist : sent | sentlist sent;
 dcl : defcte | defvar | defproc | deffun;
 
 defcte : CONST ctelist;
@@ -38,18 +27,11 @@ formal_paramlist : | PARENTESIS_ABIERTO formal_param PARENTESIS_CERRADO;
 formal_param : varlist DOS_PUNTOS tbas | varlist DOS_PUNTOS tbas PUNTO_COMA formal_param;
 tbas : INTEGER | REAL;
 
-sent : asig PUNTO_COMA | proc_call PUNTO_COMA
+sent : asig PUNTO_COMA| proc_call PUNTO_COMA
 | IF expcond THEN blq ELSE blq
 | WHILE expcond DO blq
 | REPEAT blq UNTIL expcond PUNTO_COMA
 | FOR ID ASIGNACION exp inc exp DO blq;
-
-/*
-sent: ID (asigprima | proccallprima) PUNTOCOMA |...
-
-asigprima ASIGNACION exp;
-proccallprima subparamlist;
-*/
 
 asig : ID ASIGNACION exp;
 exp : exp op exp | factor;

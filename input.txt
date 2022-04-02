@@ -1,3 +1,4 @@
-
-
-
+PROGRAM programa;
+BEGIN
+    a := 1;
+END.
