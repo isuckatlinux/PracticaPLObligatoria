@@ -50,13 +50,15 @@ sent : asig PUNTO_COMA | proc_call PUNTO_COMA
 | REPEAT blq UNTIL expcond PUNTO_COMA
 | FOR ID ASIGNACION exp inc exp DO blq;
 */
-sent : ID sentprima
+
+sent : ID sentprima PUNTO_COMA
 | IF expcond THEN blq ELSE blq
 | WHILE expcond DO blq
 | REPEAT blq UNTIL expcond PUNTO_COMA
 | FOR ID ASIGNACION exp inc exp DO blq;
 
 sentprima: ASIGNACION exp | subpparamlist;
+
 /*
 sent: ID (asigprima | proccallprima) PUNTOCOMA |...
 
@@ -68,7 +70,8 @@ asig : ID ASIGNACION exp;
 
 //exp : exp op exp | factor;
 exp : factor expprima;
-expprima : exp op exp expprima | ;
+expprima : op exp expprima | ;
+
 
 op : MAS | MENOS | ASTERISCO | DIV | MOD;
 factor : simpvalue | PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | ID subpparamlist;
@@ -86,8 +89,8 @@ expcond : factorcond expcondprima;
 expcondprima : expcond oplog expcond expcondprima | ;
 
 oplog : OR | AND;
-//factorcond : exp opcomp exp | PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | NOT factorcond| TRUE | FALSE;
-factorcond : PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | NOT factorcond| TRUE | FALSE |  simpvalue expprima | ID subpparamlist expprima;
+factorcond : exp opcomp exp | PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | NOT factorcond| TRUE | FALSE;
+//factorcond : PARENTESIS_ABIERTO exp PARENTESIS_CERRADO | NOT factorcond| TRUE | FALSE |  simpvalue expprima | ID subpparamlist expprima;
 
 opcomp : MENOR_QUE | MAYOR_QUE | MENOR_IGUAL_QUE | MAYOR_IGUAL_QUE | IGUAL;
 
